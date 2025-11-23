@@ -43,7 +43,6 @@ const router = express.Router();
  *       200:
  *         description: Login success
  */
-
 router.post("/login", loginSubscriber);
 
 /**
@@ -68,8 +67,10 @@ router.post("/login", loginSubscriber);
  *               pin:
  *                 type: string
  *                 example: "1234"
+ *     responses:
+ *       200:
+ *         description: Subscriber registered successfully
  */
-
 router.post("/register", registerSubscriber);
 
 /**
