@@ -1,4 +1,4 @@
-//src/routes/paymentRoutes.js
+// src/routes/paymentRoutes.js
 import express from "express";
 import { payBill } from "../controllers/paymentController.js";
 
@@ -27,9 +27,33 @@ const router = express.Router();
  *               - subscriberNo
  *               - month
  *               - amount
+ *             properties:
+ *               subscriberNo:
+ *                 type: string
+ *                 example: "123456"
+ *               month:
+ *                 type: string
+ *                 example: "2024-12-01"
+ *               amount:
+ *                 type: number
+ *                 example: 50.75
  *     responses:
  *       200:
- *         description: Payment completed
+ *         description: Payment completed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Payment successful"
+ *                 remaining_amount:
+ *                   type: number
+ *                   example: 25.50
+ *                 paid_status:
+ *                   type: boolean
+ *                   example: false
  */
 router.post("/pay", payBill);
 

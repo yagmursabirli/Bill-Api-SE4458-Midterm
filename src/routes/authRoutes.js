@@ -1,16 +1,15 @@
-//src/routes/authRoutes.js
+// src/routes/authRoutes.js
 
 import express from "express";
 import {
   loginSubscriber,
   registerSubscriber,
+  registerAdmin,
+  loginAdmin,
 } from "../controllers/authController.js";
-import { registerAdmin } from "../controllers/authController.js";
-import { loginAdmin } from "../controllers/authController.js";
 
 const router = express.Router();
 
-// POST /api/v1/auth/login
 /**
  * @swagger
  * tags:
@@ -33,6 +32,13 @@ const router = express.Router();
  *             required:
  *               - subscriberNo
  *               - password
+ *             properties:
+ *               subscriberNo:
+ *                 type: string
+ *                 example: "123456"
+ *               password:
+ *                 type: string
+ *                 example: "mypassword"
  *     responses:
  *       200:
  *         description: Login success
@@ -54,6 +60,13 @@ router.post("/login", loginSubscriber);
  *             required:
  *               - subscriberNo
  *               - password
+ *             properties:
+ *               subscriberNo:
+ *                 type: string
+ *                 example: "998877"
+ *               password:
+ *                 type: string
+ *                 example: "mypassword"
  *     responses:
  *       200:
  *         description: Subscriber registered
@@ -68,6 +81,20 @@ router.post("/register", registerSubscriber);
  *     tags: [Auth]
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "adminYagmur"
+ *               password:
+ *                 type: string
+ *                 example: "123456"
  *     responses:
  *       200:
  *         description: Admin registered
@@ -82,6 +109,20 @@ router.post("/admin/register", registerAdmin);
  *     tags: [Auth]
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "adminYagmur"
+ *               password:
+ *                 type: string
+ *                 example: "123456"
  *     responses:
  *       200:
  *         description: Admin login success
