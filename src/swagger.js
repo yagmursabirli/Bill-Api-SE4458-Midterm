@@ -12,6 +12,10 @@ const options = {
     },
     servers: [
       {
+        url: "https://yagmur-apim.azure-api.net/mobile-bill-api",
+        description: "API Gateway (APIM)",
+      },
+      {
         url: "https://yagmur-mobile-bill-api.azurewebsites.net",
         description: "Azure App Service",
       },
@@ -20,6 +24,7 @@ const options = {
         description: "Local development",
       },
     ],
+
     components: {
       securitySchemes: {
         bearerAuth: {
