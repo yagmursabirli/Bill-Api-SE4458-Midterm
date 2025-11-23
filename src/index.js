@@ -16,11 +16,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// JSON output for APIM
+app.get("/api-docs-json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
+
+app.use("/api-docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
+
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/bills", billRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/admin", adminRoutes);
-app.use("/api-docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup);
+
+
 
 app.get("/", (req, res) => {
   res.send("Mobile Bill Payment API is running 💙");
