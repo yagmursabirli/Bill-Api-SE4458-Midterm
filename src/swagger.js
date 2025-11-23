@@ -37,8 +37,5 @@ const options = {
 
 export const swaggerSpec = swaggerJSDoc(options);
 
-// Swagger UI export
-export const swaggerUiMiddleware = {
-  serve: swaggerUi.serve,
-  setup: swaggerUi.setup(swaggerSpec),
-};
+// Normal export, özel middleware YAPMIYORUZ
+export { swaggerUi };

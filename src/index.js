@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import billRoutes from "./routes/billRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
-import { swaggerSpec, swaggerUiMiddleware } from "./swagger.js";
+import { swaggerSpec, swaggerUi } from "./swagger.js";
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.get("/api-docs-json", (req, res) => {
   res.send(swaggerSpec);
 });
 
-app.use("/api-docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/bills", billRoutes);
