@@ -17,10 +17,15 @@ app.use(cors());
 app.use(express.json());
 
 // JSON output for APIM
-app.get("/api-docs-json", (req, res) => {
+/*app.get("/api-docs-json", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
+});*/
+app.get("/api-docs-json", (req, res) => {
+  res.type("application/json");
+  res.status(200).json(swaggerSpec);
 });
+
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
