@@ -8,24 +8,27 @@ const options = {
     info: {
       title: "Mobile Bill Payment API",
       version: "1.0.0",
-      description: "SE4458 Midterm Project - Mobile Bill Payment System"
+      description: "SE4458 Midterm Project - Mobile Bill Payment System",
     },
     servers: [
       {
-        url: "http://localhost:3000",  // local
-        description: "Local development server"
-      }
-      // App Service ve API Gateway URL’lerini deploy sonrası ekleyeceğiz
+        url: "https://yagmur-mobile-bill-api.azurewebsites.net",
+        description: "Azure App Service",
+      },
+      {
+        url: "http://localhost:3000",
+        description: "Local development",
+      },
     ],
     components: {
       securitySchemes: {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT"
-        }
-      }
-    }
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
 
   // Tüm route dosyalarını tarıyor
@@ -37,5 +40,5 @@ export const swaggerSpec = swaggerJSDoc(options);
 // Swagger UI export
 export const swaggerUiMiddleware = {
   serve: swaggerUi.serve,
-  setup: swaggerUi.setup(swaggerSpec)
+  setup: swaggerUi.setup(swaggerSpec),
 };
