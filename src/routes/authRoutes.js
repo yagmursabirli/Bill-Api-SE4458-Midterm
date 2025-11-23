@@ -31,18 +31,19 @@ const router = express.Router();
  *             type: object
  *             required:
  *               - subscriberNo
- *               - password
+ *               - pin
  *             properties:
  *               subscriberNo:
  *                 type: string
  *                 example: "123456"
- *               password:
+ *               pin:
  *                 type: string
- *                 example: "mypassword"
+ *                 example: "1234"
  *     responses:
  *       200:
  *         description: Login success
  */
+
 router.post("/login", loginSubscriber);
 
 /**
@@ -59,18 +60,16 @@ router.post("/login", loginSubscriber);
  *             type: object
  *             required:
  *               - subscriberNo
- *               - password
+ *               - pin
  *             properties:
  *               subscriberNo:
  *                 type: string
  *                 example: "998877"
- *               password:
+ *               pin:
  *                 type: string
- *                 example: "mypassword"
- *     responses:
- *       200:
- *         description: Subscriber registered
+ *                 example: "1234"
  */
+
 router.post("/register", registerSubscriber);
 
 /**
