@@ -15,6 +15,7 @@ const options = {
         url: "https://yagmur-apim.azure-api.net/mobile-bill-api",
         description: "API Gateway (APIM)",
       },
+
       {
         url: "https://yagmur-mobile-bill-api.azurewebsites.net",
         description: "Azure App Service",
@@ -32,9 +33,16 @@ const options = {
           scheme: "bearer",
           bearerFormat: "JWT",
         },
+        subscriptionKey: {
+          type: "apiKey",
+          in: "header",
+          name: "Ocp-Apim-Subscription-Key",
+        },
       },
     },
   },
+
+  security: [{ subscriptionKey: [] }, { bearerAuth: [] }],
 
   // Tüm route dosyalarını tarıyor
   apis: ["./src/routes/*.js"],
