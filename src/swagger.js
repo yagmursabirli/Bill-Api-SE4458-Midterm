@@ -12,7 +12,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://yagmur-apim.azure-api.net/mobile-bill-api",
+        url: "https://yagmur-apim.azure-api.net",
         description: "API Gateway (APIM)",
       },
 
