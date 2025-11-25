@@ -19,44 +19,43 @@ const router = express.Router();
 /**
  * @swagger
  * /api/v1/admin/add-bill:
- *   post:
- *     summary: Add a new bill for a subscriber
- *     tags: [Admin]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - subscriberNo
- *               - month
- *               - totalAmount
- *             properties:
- *               subscriberNo:
- *                 type: string
- *               month:
- *                 type: string
- *                 example: "2024-12-01"
- *               totalAmount:
- *                 type: number
- *    responses:
- *     200:
- *       description: Bill created successfully
- *     400:
-        description: Required fields (subscriberNo, month, totalAmount) are missing in the request body or their format is invalid.
-      401:
-        description: Invalid or missing bearerAuth token. The user's identity could not be authenticated.
-      403:
-        description: The token is valid, but the user does not have the admin role (authorization failure).
-      409:
-        description: A bill for the specified subscriberNo and month already exists.
-      500:
-        description: An unexpected error occurred on the server side (e.g., database connection issue).
+ * post:
+ * summary: Add a new bill for a subscriber
+ * tags: [Admin]
+ * security:
+ * - bearerAuth: []
+ * requestBody:
+ * required: true
+ * content:
+ * application/json:
+ * schema:
+ * type: object
+ * required:
+ * - subscriberNo
+ * - month
+ * - totalAmount
+ * properties:
+ * subscriberNo:
+ * type: string
+ * month:
+ * type: string
+ * example: "2024-12-01"
+ * totalAmount:
+ * type: number
+ * responses:
+ * 200:
+ * description: Bill created successfully
+ * 400:
+ * description: Required fields (subscriberNo, month, totalAmount) are missing in the request body or their format is invalid.
+ * 401:
+ * description: Invalid or missing bearerAuth token. The user's identity could not be authenticated.
+ * 403:
+ * description: The token is valid, but the user does not have the admin role (authorization failure).
+ * 409:
+ * description: A bill for the specified subscriberNo and month already exists.
+ * 500:
+ * description: An unexpected error occurred on the server side (e.g., database connection issue).
  */
-
 router.post("/add-bill", authMiddleware, adminOnly, addBill);
 
 /**
@@ -102,7 +101,6 @@ router.post("/add-bill", authMiddleware, adminOnly, addBill);
  * 500:
  * description: An unexpected error occurred on the server side (e.g., database connection issue).
  */
-
 router.post("/add-bill-detail", authMiddleware, adminOnly, addBillDetail);
 
 /**
@@ -137,7 +135,6 @@ router.post("/add-bill-detail", authMiddleware, adminOnly, addBillDetail);
  * 500:
  * description: An unexpected error occurred on the server side (e.g., file processing failure).
  */
-
 router.post(
   "/add-bill-batch",
   authMiddleware,
