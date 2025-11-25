@@ -45,7 +45,16 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: Bill created successfully
- *
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden - Admin only
+ *       404:
+ *         description: Subscriber not found
+ *       500:
+ *         description: Server error
  */
 
 router.post("/add-bill", authMiddleware, adminOnly, addBill);
@@ -82,6 +91,16 @@ router.post("/add-bill", authMiddleware, adminOnly, addBill);
  *     responses:
  *       200:
  *         description: Bill detail added successfully
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden - Admin only
+ *       404:
+ *         description: Bill not found
+ *       500:
+ *         description: Server error
  */
 
 router.post("/add-bill-detail", authMiddleware, adminOnly, addBillDetail);
@@ -107,6 +126,14 @@ router.post("/add-bill-detail", authMiddleware, adminOnly, addBillDetail);
  *     responses:
  *       200:
  *         description: Batch bill upload result
+ *       400:
+ *         description: Invalid CSV format
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Admin only
+ *       500:
+ *         description: Server error
  */
 
 router.post(
