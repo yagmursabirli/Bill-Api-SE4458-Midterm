@@ -28,12 +28,23 @@ const router = express.Router();
  *     parameters:
  *       - in: query
  *         name: month
+ *         required: true
  *         schema:
  *           type: string
- *         required: true
+ *           example: "2024-12-01"
  *     responses:
  *       200:
- *         description: Bill returned
+ *         description: Bill returned successfully
+ *       400:
+ *         description: Invalid or missing month parameter
+ *       401:
+ *         description: Unauthorized - Token required
+ *       404:
+ *         description: Bill not found for the given month
+ *       429:
+ *         description: Too many requests (Rate limit exceeded)
+ *       500:
+ *         description: Server error
  */
 router.get("/query", authMiddleware, rateLimitQueryBill, queryBill);
 
@@ -41,7 +52,7 @@ router.get("/query", authMiddleware, rateLimitQueryBill, queryBill);
  * @swagger
  * /api/v1/bills/detailed:
  *   get:
- *     summary: Query detailed bill with paging (Mobile App)
+ *     summary: Query detailed bill with pagination (Mobile App)
  *     tags: [Bills]
  *     security:
  *       - bearerAuth: []
@@ -49,13 +60,27 @@ router.get("/query", authMiddleware, rateLimitQueryBill, queryBill);
  *       - in: query
  *         name: month
  *         required: true
+ *         schema:
+ *           type: string
  *       - in: query
  *         name: limit
+ *         schema:
+ *           type: integer
  *       - in: query
  *         name: offset
+ *         schema:
+ *           type: integer
  *     responses:
  *       200:
- *         description: Detailed bill returned
+ *         description: Detailed bill returned successfully
+ *       400:
+ *         description: Invalid pagination or month parameter
+ *       401:
+ *         description: Unauthorized - Token required
+ *       404:
+ *         description: Bill not found
+ *       500:
+ *         description: Server error
  */
 
 router.get("/detailed", authMiddleware, queryBillDetailed);
@@ -70,7 +95,13 @@ router.get("/detailed", authMiddleware, queryBillDetailed);
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Unpaid bills returned
+ *         description: List of unpaid bills returned
+ *       401:
+ *         description: Unauthorized - Token required
+ *       404:
+ *         description: No unpaid bills found
+ *       500:
+ *         description: Server error
  */
 router.get("/banking/unpaid", authMiddleware, bankingQueryBill);
 

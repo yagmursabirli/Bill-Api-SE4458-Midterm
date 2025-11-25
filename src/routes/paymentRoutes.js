@@ -54,6 +54,16 @@ const router = express.Router();
  *                 paid_status:
  *                   type: boolean
  *                   example: false
+ *       400:
+ *         description: Invalid input or missing fields
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Bill not found
+ *       409:
+ *         description: Bill already fully paid
+ *       500:
+ *         description: Internal server error
  */
 router.post("/pay", payBill);
 

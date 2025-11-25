@@ -42,6 +42,14 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: Login success
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Wrong subscriberNo or PIN
+ *       404:
+ *         description: Subscriber not found
+ *       500:
+ *         description: Server error
  */
 router.post("/login", loginSubscriber);
 
@@ -70,6 +78,12 @@ router.post("/login", loginSubscriber);
  *     responses:
  *       200:
  *         description: Subscriber registered successfully
+ *       400:
+ *         description: Invalid input
+ *       409:
+ *         description: Subscriber already exists
+ *       500:
+ *         description: Server error
  */
 router.post("/register", registerSubscriber);
 
@@ -98,9 +112,14 @@ router.post("/register", registerSubscriber);
  *     responses:
  *       200:
  *         description: Admin registered
+ *       400:
+ *         description: Invalid input
+ *       409:
+ *         description: Admin already exists
+ *       500:
+ *         description: Server error
  */
 router.post("/admin/register", registerAdmin);
-
 /**
  * @swagger
  * /api/v1/auth/admin/login:
@@ -126,6 +145,14 @@ router.post("/admin/register", registerAdmin);
  *     responses:
  *       200:
  *         description: Admin login success
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Wrong username or password
+ *       404:
+ *         description: Admin not found
+ *       500:
+ *         description: Server error
  */
 router.post("/admin/login", loginAdmin);
 
