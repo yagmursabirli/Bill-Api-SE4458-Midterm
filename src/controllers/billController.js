@@ -36,6 +36,7 @@ export const queryBill = async (req, res) => {
 };
 
 export const queryBillDetailed = async (req, res) => {
+  //paging
   try {
     const subscriberId = req.subscriber.id;
     const { month, limit = 10, offset = 0 } = req.query;
