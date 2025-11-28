@@ -32,12 +32,12 @@ const router = express.Router();
  *         schema:
  *           type: string
  *           example: "2024-12-01"
- *        - in: header
- *          name: subscriberNo
- *          required: true
- *          schema:
- *            type: string
- *          description: Subscriber number for rate limiting
+ *       - in: header
+ *         name: subscriberNo
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Subscriber number for rate limiting
  *     responses:
  *       200:
  *         description: Bill returned successfully
@@ -52,6 +52,7 @@ const router = express.Router();
  *       500:
  *         description: Server error
  */
+
 router.get("/query", authMiddleware, rateLimitQueryBill, queryBill);
 
 /**
