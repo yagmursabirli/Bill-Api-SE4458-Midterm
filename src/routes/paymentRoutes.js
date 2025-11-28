@@ -40,20 +40,6 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: Payment completed successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Payment successful"
- *                 remaining_amount:
- *                   type: number
- *                   example: 25.50
- *                 paid_status:
- *                   type: boolean
- *                   example: false
  *       400:
  *         description: Invalid input or missing fields
  *       401:
