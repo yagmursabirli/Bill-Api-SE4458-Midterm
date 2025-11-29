@@ -29,88 +29,93 @@ This system consists of 5 main components:
 --Password/PIN hashing
 
 3️⃣ API Gateway (Azure API Management)
---Rate Limiting (3 requests/day – Mobile App Query Bill)
---Routing rules
---CORS management
---Subscription Key Enforcement
---Request/Response Transformation
---Request Logging → Application Insights
+* --Rate Limiting (3 requests/day – Mobile App Query Bill)
+* --Routing rules
+* --CORS management
+* --Subscription Key Enforcement
+* --Request/Response Transformation
+* --Request Logging → Application Insights
 
 4️⃣ Logging (Azure Application Insights)
---Incoming request logs
---Timestamp
---IP
---Headers
---Response status
---Latency
---Throttling events
---Error breakdown
+* --Incoming request logs
+* --Timestamp
+* --IP
+* --Headers
+* --Response status
+* --Latency
+* --Throttling events
+* --Error breakdown
 
 5️⃣ Database (PostgreSQL)
---Subscribers
---Bills
---Bill Details
---Payments
---Admins
---Rate Limit Table
+* --Subscribers
+* --Bills
+* --Bill Details
+* --Payments
+* --Admins
+* --Rate Limit Table
 
 ---
 🗂 **API Endpoints**
 🔐 Auth API
-POST	/api/v1/auth/login	Subscriber login
-POST	/api/v1/auth/register	Subscriber register
-POST	/api/v1/auth/admin/register	Admin register
-POST	/api/v1/auth/admin/login	Admin login
+* POST	/api/v1/auth/login	Subscriber login
+* POST	/api/v1/auth/register	Subscriber register
+* POST	/api/v1/auth/admin/register	Admin register
+* POST	/api/v1/auth/admin/login	Admin login
 
 📱 Mobile App - Bill APIs
-GET	/api/v1/bills/query	Yes	Query monthly bill (rate limited)
-GET	/api/v1/bills/detailed	Yes	Query detailed bill (paging supported)
+* GET	/api/v1/bills/query	Yes	Query monthly bill (rate limited)
+* GET	/api/v1/bills/detailed	Yes	Query detailed bill (paging supported)
 
 🏦 Banking App - Bill API
-GET	/api/v1/bills/banking/unpaid	Yes	List all unpaid bills
+* GET	/api/v1/bills/banking/unpaid	Yes	List all unpaid bills
 
 💳 Web Site - Payment API
-POST	/api/v1/payment/pay	No	Pay bill (partial/full)
+* POST	/api/v1/payment/pay	No	Pay bill (partial/full)
 
 🛠 Admin API
-POST	/api/v1/admin/add-bill	Admin	Create bill
-POST	/api/v1/admin/add-bill-detail	Admin	Add detail to a bill
-POST	/api/v1/admin/add-bill-batch	Admin	Upload CSV and import
+* POST	/api/v1/admin/add-bill	Admin	Create bill
+* POST	/api/v1/admin/add-bill-detail	Admin	Add detail to a bill
+* POST	/api/v1/admin/add-bill-batch	Admin	Upload CSV and import
 
 ---
 **🔑 Rate Limiting**
-Mobile App → Query Bill
-📌 Limit: 3 requests per day per subscriber
 
-Application:
-APIM inbound policy
-Database fallback (rate_limits table)
-429 error returned after limit
+Applied to:
+
+GET /api/v1/bills/query
+
+Limit: 3 requests per day
+
+Key: subscription key + subscriberNo
+
+Triggered via: APIM inbound policy
+
+Response on limit:
+429 Too Many Requests
 
 ---
-
 **📊 Logging Architecture**
-All logs are sent to Azure Application Insights.
+Logged Automatically by Application Insights:
 
-Request logs:
---Timestamp
---Method
---Path
---Source IP
---Header dump
---Request size
---Auth result
+Timestamp
 
-Response logs:
---Status code
---Latency
---Response size
---Errors
+HTTP method
 
-Moreover:
---Rate limit violations
---CSV batch import logs
---Admin actions
+URL
+
+IP
+
+JWT authentication result
+
+Exceptions
+
+Slow responses
+
+Rate limit violations
+
+Admin actions
+
+CSV batch import results
 
 ---
 
@@ -126,12 +131,14 @@ CREATE TABLE subscribers (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
+
 CREATE TABLE admins (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role VARCHAR(20) DEFAULT 'admin'
 );
+
 
 CREATE TABLE bills (
     id SERIAL PRIMARY KEY,
@@ -143,8 +150,10 @@ CREATE TABLE bills (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
+
 CREATE UNIQUE INDEX unique_bill_subscriber_month 
 ON bills (subscriber_id, month);
+
 
 CREATE TABLE bill_details (
     id SERIAL PRIMARY KEY,
@@ -153,12 +162,14 @@ CREATE TABLE bill_details (
     amount NUMERIC(10,2)
 );
 
+
 CREATE TABLE payments (
     id SERIAL PRIMARY KEY,
     bill_id INTEGER REFERENCES bills(id) ON DELETE CASCADE,
     paid_amount NUMERIC(10,2),
     paid_at TIMESTAMP DEFAULT NOW()
 );
+
 
 CREATE TABLE rate_limits (
     id SERIAL PRIMARY KEY,
@@ -170,15 +181,21 @@ CREATE TABLE rate_limits (
 ---
 **📘 Swagger Documentation**
 On Swagger:
---All Auth structures
---Admin routes
---Bill queries
---Payment API
---CSV upload are all well documented.
+* --All Auth structures
+* --Admin routes
+* --Bill queries
+* --Payment API
+* --CSV upload are all well documented.
 
 ---
 **🌐 Deployment**
 Backend API → Azure App Service
+
+
 API Gateway → Azure API Management
+
+
 Logging → Application Insights
+
+
 Database → Azure PostgreSQL Flexible / PostgreSQL
