@@ -1,6 +1,6 @@
 **📱 Mobile Bill Payment API**
 **SE4458 Large-Scale Systems Design – Midterm Project**
-This project is ab Invoice Management and Payment System API developed for Mobile App, Banking App and Website, managed with Azure API Management and supported by JWT Authentication.
+This project is an Invoice Management and Payment System API developed for Mobile App, Banking App and Website, managed with Azure API Management and supported by JWT Authentication.
 
 **🚀 Architecture Overview**
 This system consists of 5 main components:
