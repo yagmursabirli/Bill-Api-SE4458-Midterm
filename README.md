@@ -16,12 +16,12 @@ This project is an Invoice Management and Payment System API developed for Mobil
 This system consists of 5 main components:
 
 1️⃣ Backend API (Node.js / Express / PostgreSQL)
---Subscriber Management
---Bill Query (normal/detailed)
---Banking unpaid bills
---Payment processing (partial/ full)
---Admin operations
---CSV batch bill upload
+* --Subscriber Management
+* --Bill Query (normal/detailed)
+* --Banking unpaid bills
+* --Payment processing (partial/ full)
+* --Admin operations
+* --CSV batch bill upload
 
 2️⃣ Authentication
 --JWT-based (Subscriber + Admin)
