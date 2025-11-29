@@ -2,6 +2,16 @@
 **SE4458 Large-Scale Systems Design – Midterm Project**
 This project is an Invoice Management and Payment System API developed for Mobile App, Banking App and Website, managed with Azure API Management and supported by JWT Authentication.
 
+---
+**🚀 Live Links**
+### 🗂 GitHub Repository: https://github.com/yagmursabirli/Bill-Api-SE4458-Midterm
+### 🌐 Backend (Azure App Service): https://yagmur-mobile-bill-api.azurewebsites.net/
+### 📘 Swagger Documentation: https://yagmur-mobile-bill-api.azurewebsites.net/api-docs/
+### 🚀 API Gateway (Azure API Management): https://yagmur-apim.azure-api.net/mobile-bill-api
+### 🎥 Video Presentation: https://drive.google.com/file/d/1vqv0E1Oz23HzUizvctk7gLx6-4TuRMza/view?usp=sharing
+### 🧩 ER Diagram: https://drive.google.com/file/d/15tfXzmJec-ppAHte0K61WQEA5_NfWvM7/view?usp=sharing
+
+---
 **🚀 Architecture Overview**
 This system consists of 5 main components:
 
@@ -44,6 +54,7 @@ This system consists of 5 main components:
 --Admins
 --Rate Limit Table
 
+---
 🗂 **API Endpoints**
 🔐 Auth API
 POST	/api/v1/auth/login	Subscriber login
@@ -66,7 +77,7 @@ POST	/api/v1/admin/add-bill	Admin	Create bill
 POST	/api/v1/admin/add-bill-detail	Admin	Add detail to a bill
 POST	/api/v1/admin/add-bill-batch	Admin	Upload CSV and import
 
-
+---
 **🔑 Rate Limiting**
 Mobile App → Query Bill
 📌 Limit: 3 requests per day per subscriber
@@ -76,6 +87,7 @@ APIM inbound policy
 Database fallback (rate_limits table)
 429 error returned after limit
 
+---
 
 **📊 Logging Architecture**
 All logs are sent to Azure Application Insights.
@@ -99,6 +111,8 @@ Moreover:
 --Rate limit violations
 --CSV batch import logs
 --Admin actions
+
+---
 
 **🧱 Database ER Diagram**
 ✔ ER visual has been added to the project as /docs/er diagram midterm.png
@@ -153,7 +167,7 @@ CREATE TABLE rate_limits (
     count INTEGER DEFAULT 0
 );
 
-
+---
 **📘 Swagger Documentation**
 On Swagger:
 --All Auth structures
@@ -162,6 +176,7 @@ On Swagger:
 --Payment API
 --CSV upload are all well documented.
 
+---
 **🌐 Deployment**
 Backend API → Azure App Service
 API Gateway → Azure API Management
