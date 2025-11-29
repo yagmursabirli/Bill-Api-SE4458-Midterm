@@ -24,9 +24,9 @@ This system consists of 5 main components:
 * --CSV batch bill upload
 
 2️⃣ Authentication
---JWT-based (Subscriber + Admin)
---Admin-only protected routes
---Password/PIN hashing
+* --JWT-based (Subscriber + Admin)
+* --Admin-only protected routes
+* --Password/PIN hashing
 
 3️⃣ API Gateway (Azure API Management)
 * --Rate Limiting (3 requests/day – Mobile App Query Bill)
