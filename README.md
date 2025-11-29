@@ -120,10 +120,14 @@ CSV batch import results
 ---
 
 **🧱 Database ER Diagram**
+
+
 ✔ ER visual has been added to the project as /docs/er diagram midterm.png
 
 
 **🗄 SQL Schema (Auto Migration)**
+
+
 CREATE TABLE subscribers (
     id SERIAL PRIMARY KEY,
     subscriber_no VARCHAR(50) UNIQUE NOT NULL,
@@ -189,6 +193,8 @@ On Swagger:
 
 ---
 **🌐 Deployment**
+
+
 Backend API → Azure App Service
 
 
