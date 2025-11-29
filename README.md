@@ -11,7 +11,6 @@ This project is an Invoice Management and Payment System API developed for Mobil
 ### 🗂 GitHub Repository: https://github.com/yagmursabirli/Bill-Api-SE4458-Midterm
 ### 🌐 Backend (Azure App Service): https://yagmur-mobile-bill-api.azurewebsites.net/
 ### 📘 Swagger Documentation: https://yagmur-mobile-bill-api.azurewebsites.net/api-docs/
-### 🚀 API Gateway (Azure API Management): https://yagmur-apim.azure-api.net/mobile-bill-api
 ### 🎥 Video Presentation: https://drive.google.com/file/d/1vqv0E1Oz23HzUizvctk7gLx6-4TuRMza/view?usp=sharing
 ### 🧩 ER Diagram: https://drive.google.com/file/d/15tfXzmJec-ppAHte0K61WQEA5_NfWvM7/view?usp=sharing
 
