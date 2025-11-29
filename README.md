@@ -62,6 +62,8 @@ This system consists of 5 main components:
 
 ---
 🗂 **API Endpoints**
+
+
 🔐 Auth API
 * POST	/api/v1/auth/login	Subscriber login
 * POST	/api/v1/auth/register	Subscriber register
@@ -101,6 +103,8 @@ Response on limit:
 
 ---
 **📊 Logging Architecture**
+
+
 Logged Automatically by Application Insights:
 
 Timestamp
