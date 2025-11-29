@@ -33,11 +33,6 @@ const options = {
           scheme: "bearer",
           bearerFormat: "JWT",
         },
-        subscriptionKey: {
-          type: "apiKey",
-          in: "header",
-          name: "Ocp-Apim-Subscription-Key",
-        },
       },
     },
   },
