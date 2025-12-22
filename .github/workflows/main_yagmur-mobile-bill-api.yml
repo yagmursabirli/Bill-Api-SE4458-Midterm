@@ -59,7 +59,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'yagmur-mobile-bill-api'
+          app-name: 'mobile-bill-payment'
           slot-name: 'Production'
           package: .
           
