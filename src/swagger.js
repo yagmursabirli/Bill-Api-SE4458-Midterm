@@ -12,7 +12,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://mobile-bill-apim.azure-api.net/api",
+        url: "https://mobile-bill-apim.azure-api.net/mobile-bill-payment",
         description: "API Gateway (APIM)",
       },
 
