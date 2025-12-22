@@ -17,7 +17,7 @@ const options = {
       },
 
       {
-        url: "https://yagmur-mobile-bill-api.azurewebsites.net",
+        url: "https://mobile-bill-payment.azurewebsites.net",
         description: "Azure App Service",
       },
       {
