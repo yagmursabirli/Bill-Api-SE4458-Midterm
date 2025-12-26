@@ -8,17 +8,13 @@ const options = {
     info: {
       title: "Mobile Bill Payment API",
       version: "1.0.0",
-      description: "SE4458 Midterm Project - Mobile Bill Payment System",
+      description: "SE4458 Project - Mobile Bill Payment System (Internal Gateway Mode)",
     },
     servers: [
       {
-        url: "https://yagmur-apim.azure-api.net/mobile-bill-payment",
-        description: "API Gateway (APIM)",
-      },
-
-      {
-        url: "https://bill-api-se4458-midterm.onrender.com",
-        description: "Production Server (Render with Custom Gateway)",
+        // 1. ÖNCELİK: Render canlı linkin
+        url: "https://bill-api-se4458-midterm.onrender.com", 
+        description: "Production Server (Render Gateway)",
       },
       {
         url: "http://localhost:3000",
@@ -28,30 +24,22 @@ const options = {
 
     components: {
       securitySchemes: {
+        // Sadece JWT kalsın, hoca login olup token alsa yeterli
         bearerAuth: {
           type: "http",
           scheme: "bearer",
           bearerFormat: "JWT",
         },
-        subscriptionKey: {
-          type: "apiKey",
-          in: "header",
-          name: "Ocp-Apim-Subscription-Key",
-          description: "Gateway Subscription Key (Custom Middleware)",
-        },
       },
     },
-  },
-
-security: [
-      { bearerAuth: [] },
-      { subscriptionKey: [] }
+    // Global güvenlikten subscriptionKey'i çıkardık
+    security: [
+      { bearerAuth: [] }
     ],
+  },
   // Tüm route dosyalarını tarıyor
   apis: ["./src/routes/*.js"],
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
-
-// Normal export, özel middleware YAPMIYORUZ
 export { swaggerUi };
