@@ -28,16 +28,20 @@ const gatewayLimiter = rateLimit({
 
 /* ====== 2. CORS AYARI (Hata Çözücü) ====== */
 // CORS hatasını çözmek için tüm header'lara ve her origin'e izin veriyoruz
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type", 
-    "Authorization", 
-    "Ocp-Apim-Subscription-Key", 
-    "x-api-key"
-  ],
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type", 
+      "Authorization", 
+      "Ocp-Apim-Subscription-Key", 
+      "x-api-key",
+      "subscriberNo", // CamelCase hali
+      "subscriberno"  // HEPSİ KÜÇÜK HALİ 
+    ],
+  })
+);
 
 app.use(express.json());
 app.use(morgan(":method :url :status :response-time ms - :remote-addr"));
