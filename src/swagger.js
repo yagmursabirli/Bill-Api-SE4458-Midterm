@@ -17,8 +17,8 @@ const options = {
       },
 
       {
-        url: "https://mobile-bill-payment.azurewebsites.net",
-        description: "Azure App Service",
+        url: "https://bill-api-se4458-midterm.onrender.com",
+        description: "Production Server (Render with Custom Gateway)",
       },
       {
         url: "http://localhost:3000",
@@ -33,12 +33,20 @@ const options = {
           scheme: "bearer",
           bearerFormat: "JWT",
         },
+        subscriptionKey: {
+          type: "apiKey",
+          in: "header",
+          name: "Ocp-Apim-Subscription-Key",
+          description: "Gateway Subscription Key (Custom Middleware)",
+        },
       },
     },
   },
 
-  security: [{ subscriptionKey: [] }, { bearerAuth: [] }],
-
+security: [
+      { bearerAuth: [] },
+      { subscriptionKey: [] }
+    ],
   // Tüm route dosyalarını tarıyor
   apis: ["./src/routes/*.js"],
 };
